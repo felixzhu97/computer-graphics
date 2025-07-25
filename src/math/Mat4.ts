@@ -41,10 +41,10 @@ export class Mat4 {
    */
   static translation(x: number, y: number, z: number): Mat4 {
     return new Mat4([
-      1, 0, 0, 0,
-      0, 1, 0, 0,
-      0, 0, 1, 0,
-      x, y, z, 1
+      1, 0, 0, x,
+      0, 1, 0, y,
+      0, 0, 1, z,
+      0, 0, 0, 1
     ]);
   }
 
@@ -68,8 +68,8 @@ export class Mat4 {
     const s = Math.sin(angle);
     return new Mat4([
       1, 0, 0, 0,
-      0, c, s, 0,
-      0, -s, c, 0,
+      0, c, -s, 0,
+      0, s, c, 0,
       0, 0, 0, 1
     ]);
   }
@@ -81,9 +81,9 @@ export class Mat4 {
     const c = Math.cos(angle);
     const s = Math.sin(angle);
     return new Mat4([
-      c, 0, -s, 0,
+      c, 0, s, 0,
       0, 1, 0, 0,
-      s, 0, c, 0,
+      -s, 0, c, 0,
       0, 0, 0, 1
     ]);
   }
@@ -95,8 +95,8 @@ export class Mat4 {
     const c = Math.cos(angle);
     const s = Math.sin(angle);
     return new Mat4([
-      c, s, 0, 0,
-      -s, c, 0, 0,
+      c, -s, 0, 0,
+      s, c, 0, 0,
       0, 0, 1, 0,
       0, 0, 0, 1
     ]);
@@ -115,9 +115,9 @@ export class Mat4 {
     const t = 1 - c;
 
     return new Mat4([
-      t * x * x + c,     t * x * y + s * z, t * x * z - s * y, 0,
-      t * x * y - s * z, t * y * y + c,     t * y * z + s * x, 0,
-      t * x * z + s * y, t * y * z - s * x, t * z * z + c,     0,
+      t * x * x + c,     t * x * y - s * z, t * x * z + s * y, 0,
+      t * x * y + s * z, t * y * y + c,     t * y * z - s * x, 0,
+      t * x * z - s * y, t * y * z + s * x, t * z * z + c,     0,
       0,                 0,                 0,                 1
     ]);
   }
@@ -132,8 +132,8 @@ export class Mat4 {
     return new Mat4([
       f / aspect, 0, 0, 0,
       0, f, 0, 0,
-      0, 0, (far + near) * nf, -1,
-      0, 0, 2 * far * near * nf, 0
+      0, 0, (far + near) * nf, 2 * far * near * nf,
+      0, 0, -1, 0
     ]);
   }
 
@@ -141,15 +141,15 @@ export class Mat4 {
    * 创建正交投影矩阵
    */
   static orthographic(left: number, right: number, bottom: number, top: number, near: number, far: number): Mat4 {
-    const lr = 1 / (left - right);
-    const bt = 1 / (bottom - top);
+    const lr = 1 / (right - left);
+    const bt = 1 / (top - bottom);
     const nf = 1 / (near - far);
 
     return new Mat4([
-      -2 * lr, 0, 0, 0,
-      0, -2 * bt, 0, 0,
-      0, 0, 2 * nf, 0,
-      (left + right) * lr, (top + bottom) * bt, (far + near) * nf, 1
+      2 * lr, 0, 0, -(right + left) * lr,
+      0, 2 * bt, 0, -(top + bottom) * bt,
+      0, 0, 2 * nf, (far + near) * nf,
+      0, 0, 0, 1
     ]);
   }
 
@@ -162,10 +162,10 @@ export class Mat4 {
     const u = s.cross(f);
 
     return new Mat4([
-      s.x, u.x, -f.x, 0,
-      s.y, u.y, -f.y, 0,
-      s.z, u.z, -f.z, 0,
-      -s.dot(eye), -u.dot(eye), f.dot(eye), 1
+      s.x, s.y, s.z, -s.dot(eye),
+      u.x, u.y, u.z, -u.dot(eye),
+      -f.x, -f.y, -f.z, f.dot(eye),
+      0, 0, 0, 1
     ]);
   }
 
@@ -206,10 +206,10 @@ export class Mat4 {
    * 矩阵与向量相乘
    */
   multiplyVec4(v: Vec4): Vec4 {
-    const x = this.data[0] * v.x + this.data[4] * v.y + this.data[8] * v.z + this.data[12] * v.w;
-    const y = this.data[1] * v.x + this.data[5] * v.y + this.data[9] * v.z + this.data[13] * v.w;
-    const z = this.data[2] * v.x + this.data[6] * v.y + this.data[10] * v.z + this.data[14] * v.w;
-    const w = this.data[3] * v.x + this.data[7] * v.y + this.data[11] * v.z + this.data[15] * v.w;
+    const x = this.data[0] * v.x + this.data[1] * v.y + this.data[2] * v.z + this.data[3] * v.w;
+    const y = this.data[4] * v.x + this.data[5] * v.y + this.data[6] * v.z + this.data[7] * v.w;
+    const z = this.data[8] * v.x + this.data[9] * v.y + this.data[10] * v.z + this.data[11] * v.w;
+    const w = this.data[12] * v.x + this.data[13] * v.y + this.data[14] * v.z + this.data[15] * v.w;
     return new Vec4(x, y, z, w);
   }
 
@@ -220,7 +220,7 @@ export class Mat4 {
     const result = new Float32Array(16);
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
-        result[i * 4 + j] = this.data[j * 4 + i];
+        result[j * 4 + i] = this.data[i * 4 + j];
       }
     }
     return new Mat4(result);
@@ -284,14 +284,14 @@ export class Mat4 {
    * 获取矩阵元素
    */
   get(row: number, col: number): number {
-    return this.data[col * 4 + row];
+    return this.data[row * 4 + col];
   }
 
   /**
    * 设置矩阵元素
    */
   set(row: number, col: number, value: number): void {
-    this.data[col * 4 + row] = value;
+    this.data[row * 4 + col] = value;
   }
 
   /**

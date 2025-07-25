@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Graphics Tutorial Cases</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .description {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    
+    .status {
+      background: #e3f2fd;
+      border: 1px solid #2196f3;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .status h3 {
+      margin: 0 0 10px 0;
+      color: #1976d2;
+    }
+    
+    .math-demo {
+      background: #f8f9fa;
+      border-radius: 4px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    
+    .math-demo h3 {
+      margin-top: 0;
+      color: #495057;
+    }
+    
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>3D Graphics Tutorial Cases</h1>
+    <div class="description">
+      <p>《计算机图形学入门：3D渲染指南》案例实现</p>
+      <p>基于 WebGL 2.0 和 TypeScript 的交互式 3D 图形学教学平台</p>
+    </div>
+    
+    <div class="status">
+      <h3>项目状态</h3>
+      <p>✅ 项目基础架构已建立</p>
+      <p>✅ 核心数学库已实现 (Vec3, Vec4, Mat4)</p>
+      <p>✅ 单元测试已完成</p>
+      <p>🚧 WebGL 渲染引擎开发中...</p>
+    </div>
+    
+    <div class="math-demo">
+      <h3>数学库演示</h3>
+      <p>以下是核心数学库的基本使用示例：</p>
+      
+      <div class="code-block" id="math-output">
+        正在加载数学库演示...
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

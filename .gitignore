@@ -1,5 +1,14 @@
 # IDE
 .kiro
+.idea
+.vscode
+*.iml
+*.ipr
+*.iws
+*.suo
 
 # Node
 node_modules
+
+# Mac
+.DS_Store
