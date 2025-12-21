@@ -1,0 +1,16 @@
+{
+  "name": "threejs-globe",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "3D Globe with flying lines using Three.js",
+  "main": "public/index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "serve public",
+    "dev": "serve public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
