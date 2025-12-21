@@ -1,0 +1,22 @@
+@startuml VR游戏组件图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title 组件图
+
+Container_Boundary(web_app, "Web应用") {
+    Component(ui, "用户界面", "React", "游戏UI组件")
+    Component(routing, "路由", "Next.js Router", "页面导航")
+    Component(auth, "认证", "NextAuth.js", "用户认证")
+}
+
+Container_Boundary(api, "API服务") {
+    Component(game_logic, "游戏逻辑", "Node.js", "核心游戏规则")
+    Component(user_api, "用户API", "Express", "用户数据管理")
+    Component(vr_api, "VR API", "Express", "VR交互处理")
+}
+
+Rel(ui, game_logic, "调用", "WebSocket")
+Rel(ui, user_api, "调用", "REST")
+Rel(ui, vr_api, "调用", "WebRTC")
+Rel(auth, user_api, "验证", "JWT")
+@enduml

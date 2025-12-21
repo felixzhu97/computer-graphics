@@ -1,0 +1,13 @@
+@startuml VR游戏系统上下文图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title 系统上下文图
+
+Person(用户, "游戏玩家", "通过VR设备体验游戏的用户")
+
+System_Boundary(boundary, "VR游戏系统") {
+    System(vr_game, "VR游戏", "提供虚拟现实游戏体验")
+}
+
+Rel(用户, vr_game, "使用", "VR设备")
+@enduml

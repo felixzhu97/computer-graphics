@@ -1,0 +1,23 @@
+@startuml VR游戏代码图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Code.puml
+
+title 代码图
+
+Component_Boundary(ui, "用户界面") {
+    Component(home_page, "首页组件", "React", "pages/index.tsx")
+    Component(game_page, "游戏页面", "React", "pages/game.tsx")
+    Component(vr_controls, "VR控制", "React", "components/VRControls.tsx")
+}
+
+Component_Boundary(game_logic, "游戏逻辑") {
+    Component(game_engine, "游戏引擎", "TypeScript", "lib/gameEngine.ts")
+    Component(physics, "物理系统", "TypeScript", "lib/physics.ts")
+    Component(ai, "AI系统", "TypeScript", "lib/ai.ts")
+}
+
+Rel(home_page, game_page, "导航", "next/link")
+Rel(game_page, vr_controls, "包含", "")
+Rel(game_page, game_engine, "调用", "")
+Rel(game_engine, physics, "使用", "")
+Rel(game_engine, ai, "使用", "")
+@enduml

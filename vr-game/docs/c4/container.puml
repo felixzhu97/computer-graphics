@@ -1,0 +1,17 @@
+@startuml VR游戏容器图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title 容器图
+
+System_Boundary(boundary, "VR游戏系统") {
+    Container(web_app, "Web应用", "Next.js", "提供用户界面和游戏入口")
+    Container(api, "API服务", "Node.js", "处理游戏逻辑和数据")
+    Container(db, "数据库", "PostgreSQL", "存储游戏数据和用户信息")
+    Container(vr_engine, "VR引擎", "Three.js", "处理3D渲染和VR交互")
+}
+
+Rel(用户, web_app, "访问", "HTTP/HTTPS")
+Rel(web_app, api, "调用", "REST API")
+Rel(api, db, "读写", "SQL")
+Rel(web_app, vr_engine, "使用", "WebGL")
+@enduml
