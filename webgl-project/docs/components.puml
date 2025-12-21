@@ -1,0 +1,14 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title 组件图
+
+Container_Boundary(webapp, "Web应用") {
+    Component(home, "首页", "Next.js页面", "主要入口点")
+    Component(three, "3D查看器", "Three.js", "渲染3D模型")
+    Component(ui, "UI组件", "Shadcn UI", "可复用的UI元素")
+}
+
+Rel(home, three, "嵌入")
+Rel(home, ui, "使用")
+@enduml

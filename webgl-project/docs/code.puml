@@ -1,0 +1,14 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title 代码图
+
+Boundary(three, "3D查看器") {
+    Component(loader, "模型加载器", "JavaScript", "加载3D模型")
+    Component(renderer, "渲染器", "Three.js", "渲染3D场景")
+    Component(controls, "轨道控制器", "Three.js", "处理用户交互")
+}
+
+Rel(loader, renderer, "提供模型给")
+Rel(renderer, controls, "用于导航")
+@enduml

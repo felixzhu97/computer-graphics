@@ -1,0 +1,11 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title 系统上下文图
+
+Person(user, "用户", "系统的使用者")
+
+System(system, "WebGL项目", "主Web应用程序")
+
+Rel(user, system, "使用")
+@enduml
