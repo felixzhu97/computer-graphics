@@ -1,0 +1,12 @@
+@startuml 容器图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+System_Boundary(boundary, "游戏系统") {
+    Container(web浏览器, "Web浏览器", "Chrome/Firefox/Safari", "渲染3D游戏界面")
+    Container(nextjs应用, "Next.js应用", "Node.js", "游戏前端应用")
+    Container(threejs引擎, "Three.js引擎", "JavaScript", "3D渲染引擎")
+    
+    Rel(web浏览器, nextjs应用, "加载", "HTTP")
+    Rel(nextjs应用, threejs引擎, "使用", "WebGL API")
+}
+@enduml

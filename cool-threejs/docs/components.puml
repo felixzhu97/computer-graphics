@@ -1,0 +1,13 @@
+@startuml 组件图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+System_Boundary(boundary, "Next.js应用") {
+    Component(游戏场景, "游戏场景组件", "React", "3D游戏主场景")
+    Component(游戏UI, "游戏UI组件", "React", "分数/时间显示")
+    Component(状态管理, "游戏状态", "React Hooks", "管理游戏状态")
+    
+    Rel(游戏场景, 游戏UI, "更新", "游戏数据")
+    Rel(游戏UI, 状态管理, "读取/更新", "状态数据")
+    Rel(游戏场景, 状态管理, "读取/更新", "状态数据")
+}
+@enduml

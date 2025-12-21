@@ -1,0 +1,10 @@
+@startuml 系统上下文图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+System_Boundary(boundary, "Cool ThreeJS 游戏系统") {
+    Person(玩家, "玩家", "游戏玩家")
+    System(游戏系统, "3D目标射击游戏", "提供3D射击游戏体验")
+    
+    Rel(玩家, 游戏系统, "使用", "点击目标得分")
+}
+@enduml

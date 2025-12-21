@@ -1,0 +1,12 @@
+@startuml 代码图
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+System_Boundary(boundary, "游戏场景组件") {
+    Component(目标系统, "目标系统", "JavaScript", "管理3D目标")
+    Component(物理系统, "物理系统", "JavaScript", "处理目标移动")
+    Component(特效系统, "特效系统", "JavaScript", "粒子效果")
+    
+    Rel(目标系统, 物理系统, "更新", "位置数据")
+    Rel(目标系统, 特效系统, "触发", "击中事件")
+}
+@enduml
