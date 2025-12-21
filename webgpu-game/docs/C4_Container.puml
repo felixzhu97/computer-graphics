@@ -1,0 +1,20 @@
+@startuml C4_Container
+' 容器图 - 展示系统内部的主要容器及其关系
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title 容器图
+
+Person(用户, "用户", "使用系统的人")
+
+System_Boundary(系统边界, "WebGPU游戏系统") {
+    Container(前端, "前端应用", "React", "提供用户界面")
+    Container(后端, "后端服务", "Node.js", "处理游戏逻辑")
+    Container(数据库, "数据库", "PostgreSQL", "存储游戏数据")
+}
+
+Rel(用户, 前端, "使用")
+Rel(前端, 后端, "API调用", "REST/JSON")
+Rel(后端, 数据库, "读写数据", "SQL")
+
+@enduml

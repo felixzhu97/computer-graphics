@@ -1,0 +1,13 @@
+@startuml C4_Context
+' 系统上下文图 - 展示系统与外部用户和系统的关系
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title 系统上下文图
+
+Person(用户, "用户", "使用系统的人")
+System(系统, "WebGPU游戏系统", "基于WebGPU的游戏平台")
+
+Rel(用户, 系统, "使用")
+
+@enduml

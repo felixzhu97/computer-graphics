@@ -1,0 +1,26 @@
+@startuml C4_Component
+' 组件图 - 展示容器内部的组件及其关系
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title 组件图
+
+Container(前端, "前端应用", "React", "提供用户界面") {
+    Component(游戏界面, "游戏界面", "React组件", "渲染游戏画面")
+    Component(控制面板, "控制面板", "React组件", "提供游戏控制")
+    Component(状态管理, "状态管理", "Redux", "管理应用状态")
+}
+
+Container(后端, "后端服务", "Node.js", "处理游戏逻辑") {
+    Component(游戏引擎, "游戏引擎", "WebGPU", "核心游戏逻辑")
+    Component(API服务, "API服务", "Express", "处理客户端请求")
+    Component(认证服务, "认证服务", "JWT", "处理用户认证")
+}
+
+Rel(游戏界面, 控制面板, "交互")
+Rel(控制面板, 状态管理, "更新状态")
+Rel(状态管理, API服务, "API调用")
+Rel(API服务, 游戏引擎, "调用")
+Rel(API服务, 认证服务, "验证")
+
+@enduml

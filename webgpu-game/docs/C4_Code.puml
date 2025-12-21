@@ -1,0 +1,34 @@
+@startuml C4_Code
+' 类图 - 展示代码级别的类结构
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Code.puml
+
+title 类图
+
+class Game {
+  +start()
+  +update()
+  +render()
+}
+
+class WebGPURenderer {
+  +init()
+  +renderScene()
+}
+
+class Scene {
+  +addObject()
+  +removeObject()
+}
+
+class GameObject {
+  +position
+  +rotation
+  +update()
+}
+
+Game "1" *-- "1" WebGPURenderer
+Game "1" *-- "1..*" Scene
+Scene "1" *-- "0..*" GameObject
+
+@enduml
