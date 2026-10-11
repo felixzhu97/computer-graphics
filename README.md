@@ -298,7 +298,13 @@ chore: 构建过程或辅助工具的变动
 
 ## 📄 许可证
 
-MIT License
+[MIT](LICENSE) © 2026 Felix
+
+## 社区
+
+- [Contributing](CONTRIBUTING.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Security](SECURITY.md)
 
 ## 🙏 致谢
 
