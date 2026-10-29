@@ -298,7 +298,7 @@ chore: 构建过程或辅助工具的变动
 
 ## 📄 许可证
 
-[MIT](LICENSE) © 2026 Felix
+[Apache-2.0](LICENSE) © 2026 Felix Zhu
 
 ## 社区
 
